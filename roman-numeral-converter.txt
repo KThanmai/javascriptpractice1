@@ -1,0 +1,55 @@
+function convertToRoman(num) {
+  var romans=["I","V","X","L","C","D","M"],
+  ints =[],
+  roman=[],
+  numeral="",
+  i;
+  while(num){
+    ints.push(num%10);
+    num=Math.floor(num/10);
+  }
+  for(i=0;i<ints.length;i++){
+    units(ints[i]);
+  }
+  function units(){
+    numeral = romans[i*2];
+    switch(ints[i]){
+      case 1:
+        roman.push(numeral);
+        break;
+      case 2:
+        roman.push(numeral.concat(numeral));
+        break;
+      case 3:
+        roman.push(numeral.concat(numeral).concat(numeral));
+        break;
+      case 4:
+        roman.push(numeral.concat(romans[i*2+1]));
+        break;
+      case 5:
+        roman.push(romans[i*2+1]);
+        break;
+      case 6:
+        roman.push(romans[i*2+1].concat(numeral));
+        break;
+      case 7:
+        roman.push(romans[i*2+1].concat(numeral).concat(numeral));
+        break;
+      case 8:
+        roman.push(romans[i*2+1]
+                   .concat(numeral)
+                   .concat(numeral)
+                   .concat(numeral)
+        );
+        break;
+      case 9:
+        roman.push(romans[i*2].concat(romans[i*2+2]));
+    }
+  }
+ return roman
+    .reverse()
+    .join("")
+    .toString();
+}
+
+convertToRoman(36);
